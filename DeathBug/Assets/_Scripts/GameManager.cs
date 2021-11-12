@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject enemyBeetlePrefab;
     public GameObject goal;
     public static GameManager instance;
-    public int score;
+    public int score = 0;
     public UI gameUI;
 
     private GameObject enemyBeetle;
@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
 
         enemy.MoveToGoal(goal.transform.position);
         gameUI = gameObject.GetComponent<UI>();
+
+        gameUI.UpdateScore(score);
     }
 
     private void Update()

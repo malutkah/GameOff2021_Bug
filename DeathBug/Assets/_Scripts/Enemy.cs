@@ -5,12 +5,6 @@ using DG.Tweening;
 
 public class Enemy : MonoBehaviour
 {
-    private int score = 0;
-
-    private void Start() {
-        GameManager.instance.gameUI.UpdateScore(score);
-    }
-
       public void MoveToGoal(Vector3 goalPosition)
     {
         transform.DOMove(goalPosition, 1.8f);
@@ -19,8 +13,8 @@ public class Enemy : MonoBehaviour
     private void OnMouseDown() {
         // Destroy(gameObject);
         gameObject.SetActive(false);
-        score++;
-        GameManager.instance.gameUI.UpdateScore(score);
+        GameManager.instance.score++;
+        GameManager.instance.gameUI.UpdateScore(GameManager.instance.score);
     }
 
 }
