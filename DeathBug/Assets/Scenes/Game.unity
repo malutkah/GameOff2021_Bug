@@ -376,9 +376,10 @@ GameObject:
   m_Component:
   - component: {fileID: 332312540}
   - component: {fileID: 332312539}
+  - component: {fileID: 332312541}
   m_Layer: 0
   m_Name: Pumpkin_Done
-  m_TagString: Untagged
+  m_TagString: Goal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -448,6 +449,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &332312541
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332312538}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.0031318665}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.8, y: 1.1}
+    newSize: {x: 0.8, y: 1.1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.125272, y: 1.2936368}
+  m_EdgeRadius: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,7 +570,7 @@ GameObject:
   - component: {fileID: 1063420876}
   - component: {fileID: 1063420875}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -809,6 +836,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1591997985}
   - component: {fileID: 1591997986}
+  - component: {fileID: 1591997987}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -844,3 +872,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyBeetlePrefab: {fileID: 9004412518054136939, guid: ce0634abbc5b88d4a9ca9724a8c687d5, type: 3}
   goal: {fileID: 332312538}
+  score: 0
+  gameUI: {fileID: 0}
+  gameState: 0
+--- !u!114 &1591997987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591997984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fc0514a1c7c9c64f9b2aa9f055ade2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 1063420875}

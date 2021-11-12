@@ -18,4 +18,11 @@ public class UI : MonoBehaviour
     {
         scoreText.text = score.ToString();
     }
+
+    public void GameOver()
+    {
+        scoreText.text = "Game Over";
+        
+        Time.timeScale = 0f; // freeze game
+    }
 }
