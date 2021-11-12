@@ -1,4 +1,4 @@
-# 'Game Off 2021'-Jame
+# 'Game Off 2021'-Jam
 
 # Theme: 'Bug'
 
