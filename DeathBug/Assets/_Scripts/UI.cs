@@ -3,25 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class UI : MonoBehaviour
 {
-    // class for handling button clicks and switching between scenes
+    public TextMeshProUGUI scoreText;
 
     public void SwitchScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void UpdateScore(int score)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        scoreText.text = score.ToString();
     }
 }
