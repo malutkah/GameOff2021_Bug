@@ -52,38 +52,42 @@ public class GameManager : MonoBehaviour
 
     private void CreateEnemyRight()
     {
-        enemyBeetle = Instantiate(
-                    enemyBeetlePrefab,
-                    new Vector2(10, Random.Range(-4, 4)),
-                    Quaternion.identity
-                    );
+        var pos = new Vector2(10, Random.Range(-4, 4));
+        enemyBeetle = Instantiate(enemyBeetlePrefab, pos, Quaternion.identity);
     }
 
     private void CreateEnemyLeft()
     {
-        enemyBeetle = Instantiate(
-                    enemyBeetlePrefab,
-                    new Vector2(-10, Random.Range(-4, 4)),
-                    Quaternion.identity
-                    );
+        var pos = new Vector2(-10, Random.Range(-4, 4));
+        enemyBeetle = Instantiate(enemyBeetlePrefab, pos, Quaternion.identity);
     }
 
     private void CreateEnemyTop()
     {
-        enemyBeetle = Instantiate(
-                    enemyBeetlePrefab,
-                    new Vector2(Random.Range(-7, 7), 6),
-                    Quaternion.identity
-                    );
+        var pos = new Vector2(Random.Range(-7, 7), 6);
+        enemyBeetle = Instantiate(enemyBeetlePrefab, pos, Quaternion.identity);
     }
 
     private void CreateEnemyBottom()
     {
-        enemyBeetle = Instantiate(
-                    enemyBeetlePrefab,
-                    new Vector2(Random.Range(-7, 7), -6),
-                    Quaternion.identity
-                    );
+        var pos = new Vector2(Random.Range(-7, 7), -6);
+        enemyBeetle = Instantiate(enemyBeetlePrefab, pos, Quaternion.identity);
+    }
+
+    private void SpawnEnemyOverTime()
+    {
+        if (gameState == GameState.Playing)
+        {
+            timer -= Time.deltaTime;
+
+            if (timer <= 0)
+            {
+                InstantiateEnemyAtRandomPosition();
+                enemy.MoveToGoal(goal.transform.position);
+                FaceToGameObject(enemyBeetle, goal);
+                timer = .95f;
+            }
+        }
     }
     #endregion
 
@@ -91,6 +95,17 @@ public class GameManager : MonoBehaviour
     {
         gameState = GameState.GameOver;
         gameUI.GameOver();
+    }
+
+    // create a function that rotates the enemy towards the goal
+    public void FaceToGameObject(GameObject obj, GameObject goal)
+    {
+        // get the direction from the enemy to the goal
+        Vector3 direction = goal.transform.position - obj.transform.position;
+        // get the angle between the direction and the x-axis
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        // rotate the enemy to the angle
+        obj.transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
     }
 
     #region Unity Functions
@@ -120,18 +135,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (gameState == GameState.Playing)
-        {
-            timer -= Time.deltaTime;
-
-            if (timer <= 0)
-            {
-                InstantiateEnemyAtRandomPosition();
-                enemy.MoveToGoal(goal.transform.position);
-                timer = .95f;
-            }
-        }
+        SpawnEnemyOverTime();
     }
+
     #endregion
 
 }

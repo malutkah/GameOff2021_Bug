@@ -592,7 +592,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -264.62, y: -7.600006}
+  m_AnchoredPosition: {x: -264.62, y: -7.5999756}
   m_SizeDelta: {x: 61.82, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1063420875
@@ -726,7 +726,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -337.28973, y: -7.600006}
+  m_AnchoredPosition: {x: -337.28973, y: -7.5999756}
   m_SizeDelta: {x: 83.51, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1249337734
@@ -875,6 +875,7 @@ MonoBehaviour:
   score: 0
   gameUI: {fileID: 0}
   gameState: 0
+  timeToReachGoal: 2
 --- !u!114 &1591997987
 MonoBehaviour:
   m_ObjectHideFlags: 0
