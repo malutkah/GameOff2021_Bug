@@ -8,6 +8,7 @@ using TMPro;
 public class UI : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI cooldownText;
 
     public void SwitchScene(string sceneName)
     {
@@ -19,10 +20,15 @@ public class UI : MonoBehaviour
         scoreText.text = score.ToString();
     }
 
+    public void UpdateCooldwon(float timeLeft)
+    {
+        cooldownText.text = Mathf.Round(timeLeft).ToString();
+    }
+
     public void GameOver()
     {
         scoreText.text = "Game Over";
-        
+
         Time.timeScale = 0f; // freeze game
     }
 }
