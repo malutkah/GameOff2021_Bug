@@ -98,14 +98,16 @@ public class GameManager : MonoBehaviour
     }
 
     // create a function that rotates the enemy towards the goal
-    public void FaceToGameObject(GameObject obj, GameObject goal)
+    public void FaceToGameObject(GameObject lookingTarget, GameObject targetToLookAt)
     {
         // get the direction from the enemy to the goal
-        Vector3 direction = goal.transform.position - obj.transform.position;
+        Vector3 direction = targetToLookAt.transform.position - lookingTarget.transform.position;
+
         // get the angle between the direction and the x-axis
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
         // rotate the enemy to the angle
-        obj.transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+        lookingTarget.transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
     }
 
     #region Unity Functions
@@ -124,8 +126,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         InstantiateEnemyAtRandomPosition();
-
         enemy.MoveToGoal(goal.transform.position);
+        FaceToGameObject(enemyBeetle, goal);
+
         gameUI = gameObject.GetComponent<UI>();
 
         gameUI.UpdateScore(score);
