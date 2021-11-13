@@ -19,22 +19,73 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     public UI gameUI;
     public GameState gameState = GameState.Start;
+    public float timeToReachGoal = 2f;
 
     private GameObject enemyBeetle;
     private Enemy enemy;
     private float timer = .95f;
     private TextMeshProUGUI scoreText;
 
-    public void SpawnEnemy()
+    #region Enemy Spawning
+    public void InstantiateEnemyAtRandomPosition()
     {
-        enemyBeetle = Instantiate(
-            enemyBeetlePrefab,
-            new Vector2(10, Random.Range(0, 4)),
-            Quaternion.identity
-            );
+        int random = Random.Range(0, 3);
+
+        switch (random)
+        {
+            case 0:
+                CreateEnemyRight();
+                break;
+            case 1:
+                CreateEnemyLeft();
+                break;
+            case 2:
+                CreateEnemyTop();
+                break;
+            case 3:
+                CreateEnemyBottom();
+                break;
+        }
 
         enemy = enemyBeetle.GetComponent<Enemy>();
     }
+
+    private void CreateEnemyRight()
+    {
+        enemyBeetle = Instantiate(
+                    enemyBeetlePrefab,
+                    new Vector2(10, Random.Range(-4, 4)),
+                    Quaternion.identity
+                    );
+    }
+
+    private void CreateEnemyLeft()
+    {
+        enemyBeetle = Instantiate(
+                    enemyBeetlePrefab,
+                    new Vector2(-10, Random.Range(-4, 4)),
+                    Quaternion.identity
+                    );
+    }
+
+    private void CreateEnemyTop()
+    {
+        enemyBeetle = Instantiate(
+                    enemyBeetlePrefab,
+                    new Vector2(Random.Range(-7, 7), 6),
+                    Quaternion.identity
+                    );
+    }
+
+    private void CreateEnemyBottom()
+    {
+        enemyBeetle = Instantiate(
+                    enemyBeetlePrefab,
+                    new Vector2(Random.Range(-7, 7), -6),
+                    Quaternion.identity
+                    );
+    }
+    #endregion
 
     public void GameOver()
     {
@@ -42,6 +93,7 @@ public class GameManager : MonoBehaviour
         gameUI.GameOver();
     }
 
+    #region Unity Functions
     void Awake()
     {
         if (instance == null)
@@ -56,7 +108,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        SpawnEnemy();
+        InstantiateEnemyAtRandomPosition();
 
         enemy.MoveToGoal(goal.transform.position);
         gameUI = gameObject.GetComponent<UI>();
@@ -74,10 +126,12 @@ public class GameManager : MonoBehaviour
 
             if (timer <= 0)
             {
-                SpawnEnemy();
+                InstantiateEnemyAtRandomPosition();
                 enemy.MoveToGoal(goal.transform.position);
                 timer = .95f;
             }
         }
     }
+    #endregion
+
 }
