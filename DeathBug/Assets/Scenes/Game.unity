@@ -1088,6 +1088,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 1092472410}
+  gradient:
+    serializedVersion: 2
+    key0: {r: 0.98823535, g: 0.08235294, b: 0.2509804, a: 1}
+    key1: {r: 0.9014482, g: 0.9056604, b: 0.03844783, a: 1}
+    key2: {r: 0.004271993, g: 0.9056604, b: 0.1583112, a: 0}
+    key3: {r: 0.004271993, g: 0.9056604, b: 0.1583112, a: 0}
+    key4: {r: 0.004271993, g: 0.9056604, b: 0.1583112, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 21627
+    ctime1: 43253
+    ctime2: 65535
+    ctime3: 65535
+    ctime4: 65535
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 1
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
+  fill: {fileID: 1436582964}
 --- !u!114 &1092472410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1468,7 +1498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyBeetlePrefab: {fileID: 9004412518054136939, guid: ce0634abbc5b88d4a9ca9724a8c687d5, type: 3}
-  goal: {fileID: 332312538}
+  target: {fileID: 332312538}
   score: 0
   gameUI: {fileID: 0}
   gameState: 0
