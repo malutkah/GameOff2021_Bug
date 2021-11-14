@@ -9,7 +9,7 @@ public class Powerups : MonoBehaviour
 
     private void Update()
     {
-        if (activated)
+        if (!gameObject.activeSelf)
         {
             cooldown -= Time.deltaTime;
 
@@ -17,17 +17,15 @@ public class Powerups : MonoBehaviour
 
             if (cooldown <= 0)
             {
-                activated = false;
+                gameObject.SetActive(true);
                 cooldown = 10f;
             }
         }
     }
 
-
-
     private void OnMouseDown()
     {
-        activated = true;
+        gameObject.SetActive(false);
 
         if (gameObject.tag == "Item_Bomb")
         {
