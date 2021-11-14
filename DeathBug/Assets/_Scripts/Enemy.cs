@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class Enemy : MonoBehaviour
 {
+
     public void MoveToGoal(Vector3 goalPosition, float timeToReachGoal = 2f)
     {
         transform.DOMove(goalPosition, timeToReachGoal).SetEase(Ease.Linear);
@@ -26,7 +27,9 @@ public class Enemy : MonoBehaviour
         if (collision.tag == "Goal")
         {
             Debug.Log("Goal");
-            GameManager.instance.GameOver();
+            //GameManager.instance.GameOver();
+            Target.instance.TakeDamage(1);
+            Destroy(gameObject);
         }
     }
 

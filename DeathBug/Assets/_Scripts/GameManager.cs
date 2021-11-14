@@ -14,7 +14,8 @@ public enum GameState
 public class GameManager : MonoBehaviour
 {
     public GameObject enemyBeetlePrefab;
-    public GameObject goal;
+    public GameObject target;
+    
     public static GameManager instance;
     public int score = 0;
     public UI gameUI;
@@ -82,12 +83,17 @@ public class GameManager : MonoBehaviour
 
             if (timer <= 0)
             {
-                InstantiateEnemyAtRandomPosition();
-                enemy.MoveToGoal(goal.transform.position);
-                FaceToGameObject(enemyBeetle, goal);
+                SpawnEnemy();
                 timer = .95f;
             }
         }
+    }
+
+    private void SpawnEnemy()
+    {
+        InstantiateEnemyAtRandomPosition();
+        enemy.MoveToGoal(target.transform.position);
+        FaceToGameObject(enemyBeetle, target);
     }
     #endregion
 
@@ -97,10 +103,10 @@ public class GameManager : MonoBehaviour
         gameUI.GameOver();
     }
 
-    // create a function that rotates the enemy towards the goal
+    // create a function that rotates the enemy towards the target
     public void FaceToGameObject(GameObject lookingTarget, GameObject targetToLookAt)
     {
-        // get the direction from the enemy to the goal
+        // get the direction from the enemy to the target
         Vector3 direction = targetToLookAt.transform.position - lookingTarget.transform.position;
 
         // get the angle between the direction and the x-axis
@@ -125,9 +131,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        InstantiateEnemyAtRandomPosition();
-        enemy.MoveToGoal(goal.transform.position);
-        FaceToGameObject(enemyBeetle, goal);
+        SpawnEnemy();
 
         gameUI = gameObject.GetComponent<UI>();
 
