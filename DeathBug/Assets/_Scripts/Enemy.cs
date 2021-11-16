@@ -5,7 +5,6 @@ using DG.Tweening;
 
 public class Enemy : MonoBehaviour
 {
-
     public void MoveToGoal(Vector3 goalPosition, float timeToReachGoal = 2f)
     {
         transform.DOMove(goalPosition, timeToReachGoal).SetEase(Ease.Linear);

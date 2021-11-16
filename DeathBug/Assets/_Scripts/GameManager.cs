@@ -27,76 +27,6 @@ public class GameManager : MonoBehaviour
     private float timer = .95f;
     private TextMeshProUGUI scoreText;
 
-    #region Enemy Spawning
-    public void InstantiateEnemyAtRandomPosition()
-    {
-        int random = Random.Range(0, 3);
-
-        switch (random)
-        {
-            case 0:
-                CreateEnemyRight();
-                break;
-            case 1:
-                CreateEnemyLeft();
-                break;
-            case 2:
-                CreateEnemyTop();
-                break;
-            case 3:
-                CreateEnemyBottom();
-                break;
-        }
-
-        enemy = enemyBeetle.GetComponent<Enemy>();
-    }
-
-    private void CreateEnemyRight()
-    {
-        var pos = new Vector2(10, Random.Range(-4, 4));
-        enemyBeetle = Instantiate(enemyBeetlePrefab, pos, Quaternion.identity);
-    }
-
-    private void CreateEnemyLeft()
-    {
-        var pos = new Vector2(-10, Random.Range(-4, 4));
-        enemyBeetle = Instantiate(enemyBeetlePrefab, pos, Quaternion.identity);
-    }
-
-    private void CreateEnemyTop()
-    {
-        var pos = new Vector2(Random.Range(-7, 7), 6);
-        enemyBeetle = Instantiate(enemyBeetlePrefab, pos, Quaternion.identity);
-    }
-
-    private void CreateEnemyBottom()
-    {
-        var pos = new Vector2(Random.Range(-7, 7), -6);
-        enemyBeetle = Instantiate(enemyBeetlePrefab, pos, Quaternion.identity);
-    }
-
-    private void SpawnEnemyOverTime()
-    {
-        if (gameState == GameState.Playing)
-        {
-            timer -= Time.deltaTime;
-
-            if (timer <= 0)
-            {
-                SpawnEnemy();
-                timer = .95f;
-            }
-        }
-    }
-
-    private void SpawnEnemy()
-    {
-        InstantiateEnemyAtRandomPosition();
-        enemy.MoveToGoal(target.transform.position);
-        FaceToGameObject(enemyBeetle, target);
-    }
-    #endregion
-
     public void GameOver()
     {
         gameState = GameState.GameOver;
@@ -131,18 +61,11 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        SpawnEnemy();
-
         gameUI = gameObject.GetComponent<UI>();
 
         gameUI.UpdateScore(score);
 
         gameState = GameState.Playing;
-    }
-
-    private void Update()
-    {
-        SpawnEnemyOverTime();
     }
 
     #endregion
