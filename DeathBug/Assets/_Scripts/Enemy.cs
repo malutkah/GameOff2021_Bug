@@ -5,7 +5,9 @@ using DG.Tweening;
 
 public class Enemy : MonoBehaviour
 {
-    public void MoveToGoal(Vector3 goalPosition, float timeToReachGoal = 2f)
+    public int damage;
+
+    public void MoveToGoal(Vector3 goalPosition, float timeToReachGoal)
     {
         transform.DOMove(goalPosition, timeToReachGoal).SetEase(Ease.Linear);
     }
@@ -14,8 +16,9 @@ public class Enemy : MonoBehaviour
     {
         if (GameManager.instance.gameState == GameState.Playing)
         {
+            StopAllCoroutines();
             Destroy(gameObject);
-            // gameObject.SetActive(false);
+            // somehow start the coroutine 
             GameManager.instance.score++;
             GameManager.instance.gameUI.UpdateScore(GameManager.instance.score);
         }
@@ -27,9 +30,8 @@ public class Enemy : MonoBehaviour
         {
             Debug.Log("Goal");
             //GameManager.instance.GameOver();
-            Target.instance.TakeDamage(1);
+            Target.instance.TakeDamage(damage);
             Destroy(gameObject);
         }
     }
-
 }

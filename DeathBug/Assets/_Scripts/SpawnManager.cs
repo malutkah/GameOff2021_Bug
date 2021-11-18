@@ -12,19 +12,16 @@ public class SpawnManager : MonoBehaviour
 
     private void Awake()
     {
-        target = GameObject.Find("Goal");
+        target = GameObject.FindGameObjectWithTag("Goal");
     }
 
     void Start()
     {
         timer = enemyData.spawnRate;
-        LoadEnemyData();
-        SpawnEnemy();
-    }
-
-    private void Update()
-    {
-        SpawnEnemyOverTime();
+        // Debug.Log("SpawnManager Start");
+        StartCoroutine(SpawnEnemyOverTime());
+        // LoadEnemyData();
+        // SpawnEnemy();
     }
 
     #region Loading ScriptableObjects
@@ -65,6 +62,7 @@ public class SpawnManager : MonoBehaviour
         {
             enemyGO.transform.SetParent(transform);
             enemy = enemyGO.GetComponent<Enemy>();
+            enemy.damage = enemyData.hitPoints;
         }
     }
 
@@ -92,24 +90,18 @@ public class SpawnManager : MonoBehaviour
         enemyGO = Instantiate(enemyData.enemyPrefab, pos, Quaternion.identity);
     }
 
-    private void SpawnEnemyOverTime()
+    private IEnumerator SpawnEnemyOverTime()
     {
-        if (GameManager.instance.gameState == GameState.Playing)
-        {
-            timer -= Time.deltaTime;
-
-            if (timer <= 0)
-            {
-                SpawnEnemy();
-                timer = enemyData.spawnRate;
-            }
-        }
+        SpawnEnemy();
+        // Debug.Log("Spawning enemy");
+        yield return new WaitForSeconds(enemyData.spawnRate);
+        StartCoroutine(SpawnEnemyOverTime());
     }
 
     private void SpawnEnemy()
     {
         LoadEnemyData();
-        enemy.MoveToGoal(target.transform.position);
+        enemy.MoveToGoal(target.transform.position, enemyData.timeToReachGoal);
         GameManager.instance.FaceToGameObject(enemyGO, target);
     }
     #endregion

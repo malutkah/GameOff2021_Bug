@@ -13,12 +13,13 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject enemyBeetlePrefab;
     public GameObject target;
-    
+
     public static GameManager instance;
     public int score = 0;
-    public UI gameUI;
+
+    [HideInInspector] public UI gameUI;
+    
     public GameState gameState = GameState.Start;
     public float timeToReachGoal = 2f;
 
