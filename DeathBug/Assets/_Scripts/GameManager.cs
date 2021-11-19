@@ -13,20 +13,19 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject target;
-
     public static GameManager instance;
-    public int score = 0;
-
-    [HideInInspector] public UI gameUI;
-    
+    public GameObject target;
     public GameState gameState = GameState.Start;
+    [HideInInspector] public UI gameUI;
+    public GameObject spawnManager;
+    public int score = 0;
     public float timeToReachGoal = 2f;
 
     private GameObject enemyBeetle;
     private Enemy enemy;
-    private float timer = .95f;
     private TextMeshProUGUI scoreText;
+    private SpawnManager enemySpawner;
+    private float timer = .95f;
 
     public void GameOver()
     {
@@ -58,6 +57,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        enemySpawner = spawnManager.GetComponent<SpawnManager>();
     }
 
     void Start()
@@ -67,6 +68,11 @@ public class GameManager : MonoBehaviour
         gameUI.UpdateScore(score);
 
         gameState = GameState.Playing;
+    }
+
+    private void Update()
+    {
+        
     }
 
     #endregion

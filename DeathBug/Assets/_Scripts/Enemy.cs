@@ -16,9 +16,8 @@ public class Enemy : MonoBehaviour
     {
         if (GameManager.instance.gameState == GameState.Playing)
         {
-            StopAllCoroutines();
             Destroy(gameObject);
-            // somehow start the coroutine 
+            
             GameManager.instance.score++;
             GameManager.instance.gameUI.UpdateScore(GameManager.instance.score);
         }
@@ -29,7 +28,6 @@ public class Enemy : MonoBehaviour
         if (collision.tag == "Goal")
         {
             Debug.Log("Goal");
-            //GameManager.instance.GameOver();
             Target.instance.TakeDamage(damage);
             Destroy(gameObject);
         }

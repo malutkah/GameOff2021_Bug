@@ -7,6 +7,7 @@ TagManager:
   - Goal
   - Item_Bomb
   - Enemy
+  - Spawner
   layers:
   - Default
   - TransparentFX
