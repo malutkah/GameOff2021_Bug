@@ -467,7 +467,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.05589199}
+  m_Offset: {x: -0.0035424829, y: 0.03621328}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -478,7 +478,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.125272, y: 1.1755891}
+  m_Size: {x: 0.80644643, y: 0.99137855}
   m_EdgeRadius: 0
 --- !u!114 &332312542
 MonoBehaviour:
@@ -492,7 +492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ada44d4d4c94105b69aa14975f06e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
+  maxHealth: 10
   currentHealth: 0
   healthBar: {fileID: 1092472409}
 --- !u!1 &372982392
@@ -1093,12 +1093,12 @@ GameObject:
   - component: {fileID: 986481866}
   - component: {fileID: 986481865}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: PauseMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &986481864
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2040,7 +2040,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1063420875}
   cooldownText: {fileID: 582033172}
-  pauseMenuUI: {fileID: 0}
+  pauseMenuUI: {fileID: 986481863}
 --- !u!1 &1664598864
 GameObject:
   m_ObjectHideFlags: 0

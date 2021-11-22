@@ -121,7 +121,7 @@ public class SpawnManager : MonoBehaviour
     private void SpawnEnemy()
     {
         LoadScriptableObjectEnemy();
-        enemy.MoveToGoal(target.transform.position, enemyData.timeToReachGoal);
+        enemy.MoveToGoal(new Vector2(target.transform.position.x, target.transform.position.y), enemyData.timeToReachGoal);
         GameManager.instance.FaceToGameObject(newEnemyGO, target);
     }
     #endregion

@@ -8,17 +8,9 @@ public class Enemy : MonoBehaviour
     public int hitPoints;
     public int scoreValue;
 
-    public void MoveToGoal(Vector3 goalPosition, float timeToReachGoal)
+    public void MoveToGoal(Vector2 goalPosition, float timeToReachGoal)
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-        if (enemies.Length > 0)
-        {
-            foreach (GameObject enemy in enemies)
-            {
-                enemy.transform.DOMove(goalPosition, timeToReachGoal).SetEase(Ease.Linear);
-            }
-        }
+        transform.DOMove(goalPosition, timeToReachGoal).SetEase(Ease.Linear);
     }
 
     public void Print()
