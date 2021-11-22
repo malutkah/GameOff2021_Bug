@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class SpawnManager : MonoBehaviour
 {
-    public EnemyData enemyData;
+    [HideInInspector] public EnemyData enemyData;
     private float timer;
-    private GameObject enemyGO;
+    private GameObject enemyGO, newEnemyGO;
+    private GameObject beetle0, beetle10, beetle25, beetle50, beetle100;
     private GameObject target;
     private Enemy enemy;
 
@@ -24,84 +26,88 @@ public class SpawnManager : MonoBehaviour
     }
 
     #region Enemy Spawning
-    public void InstantiateEnemyAtRandomPosition()
+    public void InstantiateEnemyAtRandomPosition(GameObject enemyToSpawn)
     {
         int random = Random.Range(0, 3);
 
-        switch (GameManager.instance.score)
-        {
-            case 0:
-                // load scriptableobject from resources
-                enemyData = Resources.Load<EnemyData>("_ScriptableObjects/Beetle");
-                enemyGO = enemyData.enemyPrefab;
-                break;
-
-            case 10:
-                enemyData = Resources.Load<EnemyData>("_ScriptableObjects/Beetle 2");
-                enemyGO = enemyData.enemyPrefab;
-                break;
-
-            case 25:
-                Debug.Log("Spawn level 25 bug");
-                break;
-
-            case 50:
-                Debug.Log("Spawn level 50 bug");
-                break;
-
-            case 100:
-                Debug.Log("Spawn level 100 bug");
-                break;
-        }
-
-
-
-        if (enemyGO != null)
-        {
             switch (random)
             {
                 case 0:
-                    CreateEnemyRight();
+                    CreateEnemyRight(enemyToSpawn);
                     break;
                 case 1:
-                    CreateEnemyLeft();
+                    CreateEnemyLeft(enemyToSpawn);
                     break;
                 case 2:
-                    CreateEnemyTop();
+                    CreateEnemyTop(enemyToSpawn);
                     break;
                 case 3:
-                    CreateEnemyBottom();
+                    CreateEnemyBottom(enemyToSpawn);
                     break;
             }
-
-            // enemyGO.transform.SetParent(transform);
-            enemy = enemyGO.GetComponent<Enemy>();
-            enemy.damage = enemyData.hitPoints;
-        }
     }
 
-    private void CreateEnemyRight()
+    private void LoadScriptableObjectEnemy()
+    {
+        if (GameManager.instance.score >= 0)
+        {
+            // spawn enemey 0
+            enemyData = Resources.Load<EnemyData>("_ScriptableObjects/Beetle");
+            beetle0 = enemyData.enemyPrefab;
+            beetle0.GetComponent<Enemy>().scoreValue = enemyData.scoreValue;
+            beetle0.GetComponent<Enemy>().hitPoints = enemyData.hitPoints;
+            InstantiateEnemyAtRandomPosition(beetle0);
+        }
+        if (GameManager.instance.score >= 10)
+        {
+            // spawn enemey 1
+            enemyData = Resources.Load<EnemyData>("_ScriptableObjects/Beetle 2");
+            beetle10 = enemyData.enemyPrefab;
+            beetle10.GetComponent<Enemy>().scoreValue = enemyData.scoreValue;
+            beetle10.GetComponent<Enemy>().hitPoints = enemyData.hitPoints;
+            InstantiateEnemyAtRandomPosition(beetle10);
+        }
+        if (GameManager.instance.score >= 25)
+        {
+            // spawn enemy 25
+            Debug.Log("Spawn level 25 bug");
+        }
+        if (GameManager.instance.score >= 50)
+        {
+            // spawn eenemy 50
+            Debug.Log("Spawn level 50 bug");
+        }
+        if (GameManager.instance.score >= 100)
+        {
+            // spawn enemy 100
+            Debug.Log("Spawn level 100 bug");
+        }
+
+        enemy = newEnemyGO.GetComponent<Enemy>();
+    }
+
+    private void CreateEnemyRight(GameObject enemyToSpawn)
     {
         var pos = new Vector2(10, Random.Range(-4, 4));
-        Instantiate(enemyGO, pos, Quaternion.identity);
+        newEnemyGO = Instantiate(enemyToSpawn, pos, Quaternion.identity);
     }
 
-    private void CreateEnemyLeft()
+    private void CreateEnemyLeft(GameObject enemyToSpawn)
     {
         var pos = new Vector2(-10, Random.Range(-4, 4));
-        Instantiate(enemyGO, pos, Quaternion.identity);
+        newEnemyGO = Instantiate(enemyToSpawn, pos, Quaternion.identity);
     }
 
-    private void CreateEnemyTop()
+    private void CreateEnemyTop(GameObject enemyToSpawn)
     {
         var pos = new Vector2(Random.Range(-7, 7), 6);
-        Instantiate(enemyGO, pos, Quaternion.identity);
+        newEnemyGO = Instantiate(enemyToSpawn, pos, Quaternion.identity);
     }
 
-    private void CreateEnemyBottom()
+    private void CreateEnemyBottom(GameObject enemyToSpawn)
     {
         var pos = new Vector2(Random.Range(-7, 7), -6);
-        Instantiate(enemyGO, pos, Quaternion.identity);
+        newEnemyGO = Instantiate(enemyToSpawn, pos, Quaternion.identity);
     }
 
     private IEnumerator SpawnEnemyOverTime()
@@ -114,9 +120,9 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        InstantiateEnemyAtRandomPosition();
+        LoadScriptableObjectEnemy();
         enemy.MoveToGoal(target.transform.position, enemyData.timeToReachGoal);
-        GameManager.instance.FaceToGameObject(enemyGO, target);
+        GameManager.instance.FaceToGameObject(newEnemyGO, target);
     }
     #endregion
 }
