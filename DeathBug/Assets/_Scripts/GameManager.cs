@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI scoreText;
     private SpawnManager enemySpawner;
     private float timer = .95f;
+    private AudioSource source;
+    private Sounds sounds;
 
     public void GameOver()
     {
@@ -46,6 +48,24 @@ public class GameManager : MonoBehaviour
         lookingTarget.transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
     }
 
+    #region Sound
+
+        IEnumerator PlayBgSounds()
+    {
+        FindObjectOfType<AudioManager>().PlaySound("Test");
+
+        yield return new WaitForSeconds(source.clip.length);
+
+        StartCoroutine(PlayBgSounds());
+    }
+
+    void PlayNextSong()
+    {
+        StartCoroutine(PlayBgSounds());
+    }
+
+    #endregion
+
     #region Unity Functions
     void Awake()
     {
@@ -59,6 +79,11 @@ public class GameManager : MonoBehaviour
         }
 
         enemySpawner = spawnManager.GetComponent<SpawnManager>();
+        
+        source = GetComponent<AudioSource>();
+        source = GameObject.Find("AudioManager").GetComponent<AudioSource>();
+
+        StartCoroutine(PlayBgSounds());
     }
 
     void Start()

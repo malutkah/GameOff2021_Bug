@@ -9,7 +9,6 @@ public class Enemy : MonoBehaviour
     public int scoreValue;
     public float timeToReachGoal;
     public Vector2 goalPosition;
-
     private void Awake()
     {
         MoveToGoal();
@@ -18,6 +17,7 @@ public class Enemy : MonoBehaviour
     public void MoveToGoal()
     {
         transform.DOMove(goalPosition, timeToReachGoal).SetEase(Ease.Linear);
+        GameManager.instance.FaceToGameObject(gameObject, GameManager.instance.target);
     }
 
     public void Print()

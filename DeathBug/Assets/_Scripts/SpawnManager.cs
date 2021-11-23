@@ -19,10 +19,7 @@ public class SpawnManager : MonoBehaviour
 
     void Start()
     {
-        // Debug.Log("SpawnManager Start");
         StartCoroutine(SpawnEnemyOverTime());
-        // LoadEnemyData();
-        // SpawnEnemy();
     }
 
     private Vector2 getTargetPositionAsVector2()
@@ -61,7 +58,7 @@ public class SpawnManager : MonoBehaviour
             beetle0 = enemyData.enemyPrefab;
             beetle0.GetComponent<Enemy>().scoreValue = enemyData.scoreValue;
             beetle0.GetComponent<Enemy>().hitPoints = enemyData.hitPoints;
-            beetle0.GetComponent<Enemy>().timeToReachGoal = enemyData.timeToReachGoal;            
+            beetle0.GetComponent<Enemy>().timeToReachGoal = enemyData.timeToReachGoal;
             beetle0.GetComponent<Enemy>().goalPosition = getTargetPositionAsVector2();
             InstantiateEnemyAtRandomPosition(beetle0);
         }
@@ -79,7 +76,13 @@ public class SpawnManager : MonoBehaviour
         if (GameManager.instance.score >= 25)
         {
             // spawn enemy 25
-            Debug.Log("Spawn level 25 bug");
+            enemyData = Resources.Load<EnemyData>("_ScriptableObjects/Beelte 3");
+            beetle25 = enemyData.enemyPrefab;
+            beetle25.GetComponent<Enemy>().scoreValue = enemyData.scoreValue;
+            beetle25.GetComponent<Enemy>().hitPoints = enemyData.hitPoints;
+            beetle25.GetComponent<Enemy>().timeToReachGoal = enemyData.timeToReachGoal;            
+            beetle25.GetComponent<Enemy>().goalPosition = getTargetPositionAsVector2();
+            InstantiateEnemyAtRandomPosition(beetle25);
         }
         if (GameManager.instance.score >= 50)
         {
@@ -121,17 +124,9 @@ public class SpawnManager : MonoBehaviour
 
     private IEnumerator SpawnEnemyOverTime()
     {
-        SpawnEnemy();
-        // Debug.Log("Spawning enemy");
+        LoadScriptableObjectEnemy();
         yield return new WaitForSeconds(enemyData.spawnRate);
         StartCoroutine(SpawnEnemyOverTime());
-    }
-
-    private void SpawnEnemy()
-    {
-        LoadScriptableObjectEnemy();
-        // enemy.MoveToGoal(getTargetPositionAsVector2(), enemyData.timeToReachGoal);
-        GameManager.instance.FaceToGameObject(newEnemyGO, target);
     }
     #endregion
 }
