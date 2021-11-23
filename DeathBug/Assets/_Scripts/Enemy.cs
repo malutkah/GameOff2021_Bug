@@ -7,8 +7,15 @@ public class Enemy : MonoBehaviour
 {
     public int hitPoints;
     public int scoreValue;
+    public float timeToReachGoal;
+    public Vector2 goalPosition;
 
-    public void MoveToGoal(Vector2 goalPosition, float timeToReachGoal)
+    private void Awake()
+    {
+        MoveToGoal();
+    }
+
+    public void MoveToGoal()
     {
         transform.DOMove(goalPosition, timeToReachGoal).SetEase(Ease.Linear);
     }

@@ -25,6 +25,11 @@ public class SpawnManager : MonoBehaviour
         // SpawnEnemy();
     }
 
+    private Vector2 getTargetPositionAsVector2()
+    {
+        return new Vector2(target.transform.position.x, target.transform.position.y);
+    }
+
     #region Enemy Spawning
     public void InstantiateEnemyAtRandomPosition(GameObject enemyToSpawn)
     {
@@ -56,6 +61,8 @@ public class SpawnManager : MonoBehaviour
             beetle0 = enemyData.enemyPrefab;
             beetle0.GetComponent<Enemy>().scoreValue = enemyData.scoreValue;
             beetle0.GetComponent<Enemy>().hitPoints = enemyData.hitPoints;
+            beetle0.GetComponent<Enemy>().timeToReachGoal = enemyData.timeToReachGoal;            
+            beetle0.GetComponent<Enemy>().goalPosition = getTargetPositionAsVector2();
             InstantiateEnemyAtRandomPosition(beetle0);
         }
         if (GameManager.instance.score >= 10)
@@ -65,6 +72,8 @@ public class SpawnManager : MonoBehaviour
             beetle10 = enemyData.enemyPrefab;
             beetle10.GetComponent<Enemy>().scoreValue = enemyData.scoreValue;
             beetle10.GetComponent<Enemy>().hitPoints = enemyData.hitPoints;
+            beetle10.GetComponent<Enemy>().timeToReachGoal = enemyData.timeToReachGoal;            
+            beetle10.GetComponent<Enemy>().goalPosition = getTargetPositionAsVector2();
             InstantiateEnemyAtRandomPosition(beetle10);
         }
         if (GameManager.instance.score >= 25)
@@ -121,7 +130,7 @@ public class SpawnManager : MonoBehaviour
     private void SpawnEnemy()
     {
         LoadScriptableObjectEnemy();
-        enemy.MoveToGoal(new Vector2(target.transform.position.x, target.transform.position.y), enemyData.timeToReachGoal);
+        // enemy.MoveToGoal(getTargetPositionAsVector2(), enemyData.timeToReachGoal);
         GameManager.instance.FaceToGameObject(newEnemyGO, target);
     }
     #endregion
