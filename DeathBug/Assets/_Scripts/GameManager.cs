@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
     private GameObject enemyBeetle;
     private Enemy enemy;
     private TextMeshProUGUI scoreText;
-    private SpawnManager enemySpawner;
     private float timer = .95f;
     private AudioSource source;
     private Sounds sounds;
@@ -78,9 +77,6 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        enemySpawner = spawnManager.GetComponent<SpawnManager>();
-        
-        source = GetComponent<AudioSource>();
         source = GameObject.Find("AudioManager").GetComponent<AudioSource>();
 
         StartCoroutine(PlayBgSounds());
@@ -93,11 +89,6 @@ public class GameManager : MonoBehaviour
         gameUI.UpdateScore(score);
 
         gameState = GameState.Playing;
-    }
-
-    private void Update()
-    {
-        
     }
 
     #endregion

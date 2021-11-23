@@ -11,6 +11,9 @@ public class Enemy : MonoBehaviour
     public Vector2 goalPosition;
     private void Awake()
     {
+        // somehow domove set timeScale = 0 when reloading scene
+        Time.timeScale = 1f;
+
         MoveToGoal();
     }
 

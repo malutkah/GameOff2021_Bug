@@ -1,16 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
 public class SpawnManager : MonoBehaviour
 {
     [HideInInspector] public EnemyData enemyData;
-    private float timer;
+    private float spawnRate;
     private GameObject enemyGO, newEnemyGO;
     private GameObject beetle0, beetle10, beetle25, beetle50, beetle100;
     private GameObject target;
-    private Enemy enemy;
 
     private void Awake()
     {
@@ -19,7 +17,7 @@ public class SpawnManager : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(SpawnEnemyOverTime());
+        StartCoroutine(LoadScriptableObjectEnemy());
     }
 
     private Vector2 getTargetPositionAsVector2()
@@ -32,24 +30,24 @@ public class SpawnManager : MonoBehaviour
     {
         int random = Random.Range(0, 3);
 
-            switch (random)
-            {
-                case 0:
-                    CreateEnemyRight(enemyToSpawn);
-                    break;
-                case 1:
-                    CreateEnemyLeft(enemyToSpawn);
-                    break;
-                case 2:
-                    CreateEnemyTop(enemyToSpawn);
-                    break;
-                case 3:
-                    CreateEnemyBottom(enemyToSpawn);
-                    break;
-            }
+        switch (random)
+        {
+            case 0:
+                CreateEnemyRight(enemyToSpawn);
+                break;
+            case 1:
+                CreateEnemyLeft(enemyToSpawn);
+                break;
+            case 2:
+                CreateEnemyTop(enemyToSpawn);
+                break;
+            case 3:
+                CreateEnemyBottom(enemyToSpawn);
+                break;
+        }
     }
 
-    private void LoadScriptableObjectEnemy()
+    private IEnumerator LoadScriptableObjectEnemy()
     {
         if (GameManager.instance.score >= 0)
         {
@@ -61,17 +59,19 @@ public class SpawnManager : MonoBehaviour
             beetle0.GetComponent<Enemy>().timeToReachGoal = enemyData.timeToReachGoal;
             beetle0.GetComponent<Enemy>().goalPosition = getTargetPositionAsVector2();
             InstantiateEnemyAtRandomPosition(beetle0);
+            yield return new WaitForSeconds(enemyData.spawnRate);
         }
         if (GameManager.instance.score >= 10)
         {
-            // spawn enemey 1
+            // spawn enemey 10
             enemyData = Resources.Load<EnemyData>("_ScriptableObjects/Beetle 2");
             beetle10 = enemyData.enemyPrefab;
             beetle10.GetComponent<Enemy>().scoreValue = enemyData.scoreValue;
             beetle10.GetComponent<Enemy>().hitPoints = enemyData.hitPoints;
-            beetle10.GetComponent<Enemy>().timeToReachGoal = enemyData.timeToReachGoal;            
+            beetle10.GetComponent<Enemy>().timeToReachGoal = enemyData.timeToReachGoal;
             beetle10.GetComponent<Enemy>().goalPosition = getTargetPositionAsVector2();
             InstantiateEnemyAtRandomPosition(beetle10);
+            yield return new WaitForSeconds(enemyData.spawnRate);
         }
         if (GameManager.instance.score >= 25)
         {
@@ -80,9 +80,10 @@ public class SpawnManager : MonoBehaviour
             beetle25 = enemyData.enemyPrefab;
             beetle25.GetComponent<Enemy>().scoreValue = enemyData.scoreValue;
             beetle25.GetComponent<Enemy>().hitPoints = enemyData.hitPoints;
-            beetle25.GetComponent<Enemy>().timeToReachGoal = enemyData.timeToReachGoal;            
+            beetle25.GetComponent<Enemy>().timeToReachGoal = enemyData.timeToReachGoal;
             beetle25.GetComponent<Enemy>().goalPosition = getTargetPositionAsVector2();
             InstantiateEnemyAtRandomPosition(beetle25);
+            yield return new WaitForSeconds(enemyData.spawnRate);
         }
         if (GameManager.instance.score >= 50)
         {
@@ -94,8 +95,8 @@ public class SpawnManager : MonoBehaviour
             // spawn enemy 100
             Debug.Log("Spawn level 100 bug");
         }
-
-        enemy = newEnemyGO.GetComponent<Enemy>();
+        
+        StartCoroutine(LoadScriptableObjectEnemy());
     }
 
     private void CreateEnemyRight(GameObject enemyToSpawn)
@@ -126,7 +127,7 @@ public class SpawnManager : MonoBehaviour
     {
         LoadScriptableObjectEnemy();
         yield return new WaitForSeconds(enemyData.spawnRate);
-        StartCoroutine(SpawnEnemyOverTime());
+        StartCoroutine(LoadScriptableObjectEnemy());
     }
     #endregion
 }
