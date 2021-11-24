@@ -5,7 +5,6 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [HideInInspector] public EnemyData enemyData;
-    private float spawnRate;
     private GameObject enemyGO, newEnemyGO;
     private GameObject beetle0, beetle10, beetle25, beetle50, beetle100;
     private GameObject target;
@@ -123,10 +122,10 @@ public class SpawnManager : MonoBehaviour
         newEnemyGO = Instantiate(enemyToSpawn, pos, Quaternion.identity);
     }
 
-    private IEnumerator SpawnEnemyOverTime()
+    private IEnumerator SpawnEnemyOverTime(float spawnRate)
     {
         LoadScriptableObjectEnemy();
-        yield return new WaitForSeconds(enemyData.spawnRate);
+        yield return new WaitForSeconds(spawnRate);
         StartCoroutine(LoadScriptableObjectEnemy());
     }
     #endregion
