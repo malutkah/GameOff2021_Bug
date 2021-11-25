@@ -631,7 +631,7 @@ GameObject:
   - component: {fileID: 792459707}
   - component: {fileID: 792459706}
   m_Layer: 5
-  m_Name: TitleScreenText (1)
+  m_Name: HowToText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1006,6 +1006,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 0}
+  highScoreText: {fileID: 0}
+  text: {fileID: 0}
   cooldownText: {fileID: 0}
   pauseMenuUI: {fileID: 0}
 --- !u!1 &1837637709
@@ -1195,6 +1197,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 0}
+  highScoreText: {fileID: 0}
+  text: {fileID: 0}
   cooldownText: {fileID: 0}
   pauseMenuUI: {fileID: 0}
 --- !u!114 &2049594316
