@@ -43,7 +43,6 @@ public class Enemy : MonoBehaviour
     {
         if (collision.tag == "Goal")
         {
-            Debug.Log("Goal");
             Target.instance.TakeDamage(hitPoints);
             Destroy(gameObject);
         }

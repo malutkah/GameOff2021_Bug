@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Unity Editor (Unity) (3836) DeathBug - Game - PC, Mac & Linux Standalone - Unity 2020.3.22f1 Personal <DX11>",
+            "name": "DeathBug - Game - PC, Mac & Linux Standalone - Unity 2020.3.22f1 Personal <DX11>",
             "type": "unity",
             "path": "/C:/Unity/GameOff2021_Bug/DeathBug/Library/EditorInstance.json",
             "request": "launch"
