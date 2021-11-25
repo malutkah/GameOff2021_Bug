@@ -9,7 +9,7 @@ public class UI : MonoBehaviour
 {
     public static bool GameIsPaused = false;
 
-    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI scoreText, highScoreText, text;
     public TextMeshProUGUI cooldownText;
     public GameObject pauseMenuUI;
 
@@ -35,8 +35,13 @@ public class UI : MonoBehaviour
 
         GameIsPaused = false;
     }
+   
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 
-    void Pause()
+    public void Pause()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f; // freeze game
@@ -62,9 +67,20 @@ public class UI : MonoBehaviour
     public void GameOver()
     {
         scoreText.text = "Game Over";
+        highScoreText.text = GameManager.instance.score.ToString();
+        highScoreText.gameObject.SetActive(true);
+        text.gameObject.SetActive(true);
         pauseMenuUI.SetActive(true);
 
         Time.timeScale = 0f; // freeze game
+
+        // destroy all game objects with the tag "Enemy"
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+        
     }
 
     public void RestartGame()

@@ -12,11 +12,13 @@ public class SpawnManager : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 1f;
         target = GameObject.FindGameObjectWithTag("Goal");
     }
 
     void Start()
     {
+        Time.timeScale = 1f;
         StartCoroutine(LoadBeetle0());
     }
 
