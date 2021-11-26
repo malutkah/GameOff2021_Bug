@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     {
         gameState = GameState.GameOver;
         gameUI.GameOver();
+        // save highscore in json 
     }
 
     // create a function that rotates the enemy towards the target
