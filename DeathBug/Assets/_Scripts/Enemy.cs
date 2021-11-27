@@ -7,8 +7,11 @@ public class Enemy : MonoBehaviour
 {
     public int hitPoints;
     public int scoreValue;
+    public int firstAppearanceAtScore;
     public float timeToReachGoal;
+    public float spawnRate;
     public Vector2 goalPosition;
+
     private void Awake()
     {
         // somehow domove set timeScale = 0 when reloading scene

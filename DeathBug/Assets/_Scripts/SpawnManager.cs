@@ -5,10 +5,10 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [HideInInspector] public EnemyData enemyData;
-    private GameObject enemyGO, newEnemyGO;
-    private GameObject beetle0, beetle10, beetle25, beetle50, beetle100;
+    private GameObject newEnemyGO;
+    private GameObject beetle1, beetle2, beetle3, beetle4, beetle5;
     private GameObject target;
-    private bool hit10once = false, hit25once = false, hit50once = false, hit100once = false;
+    private bool spawnBeetle1 = false, spawnBeetle2 = false, spawnBeetle3 = false, spawnBeetle4 = false, spawnBeetle5 = false;
 
     private void Awake()
     {
@@ -19,30 +19,45 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1f;
-        StartCoroutine(LoadBeetle0());
+
+        string pathPrefix = "_ScriptableObjects/";
+        beetle1 = LoadBeetle(pathPrefix + "Beetle 1");
+        beetle2 = LoadBeetle(pathPrefix + "Beetle 2");
+        beetle3 = LoadBeetle(pathPrefix + "Beetle 3");
+        beetle4 = LoadBeetle(pathPrefix + "Beetle 4");
+        beetle5 = LoadBeetle(pathPrefix + "Beetle 5");
     }
 
     private void Update()
     {
-        if (GameManager.instance.score == 10 && !hit10once)
+        if (GameManager.instance.score == beetle1.GetComponent<Enemy>().firstAppearanceAtScore && !spawnBeetle1)
         {
-            hit10once = true;
-            StartCoroutine(LoadBeetle10());
+            spawnBeetle1 = true;
+            StartCoroutine(SpawnBeetle(beetle1));
         }
-        else if (GameManager.instance.score >= 25 && !hit25once)
+
+        if (GameManager.instance.score == beetle2.GetComponent<Enemy>().firstAppearanceAtScore && !spawnBeetle2)
         {
-            hit25once = true;
-            StartCoroutine(LoadBeetle25());
+            spawnBeetle2 = true;
+            StartCoroutine(SpawnBeetle(beetle2));
         }
-        else if (GameManager.instance.score >= 50 && !hit50once)
+
+        if (GameManager.instance.score >= beetle3.GetComponent<Enemy>().firstAppearanceAtScore && !spawnBeetle3)
         {
-            hit50once = true;
-            StartCoroutine(LoadBeetle50());
+            spawnBeetle3 = true;
+            StartCoroutine(SpawnBeetle(beetle3));
         }
-        else if (GameManager.instance.score >= 100 && !hit100once)
+
+        if (GameManager.instance.score >= beetle4.GetComponent<Enemy>().firstAppearanceAtScore && !spawnBeetle4)
         {
-            hit100once = true;
-            StartCoroutine(LoadBeetle100());
+            spawnBeetle4 = true;
+            StartCoroutine(SpawnBeetle(beetle4));
+        }
+
+        if (GameManager.instance.score >= beetle5.GetComponent<Enemy>().firstAppearanceAtScore && !spawnBeetle5)
+        {
+            spawnBeetle5 = true;
+            StartCoroutine(SpawnBeetle(beetle5));
         }
     }
 
@@ -99,84 +114,23 @@ public class SpawnManager : MonoBehaviour
 
     #endregion
 
-    private IEnumerator LoadBeetle0()
+    private GameObject LoadBeetle(string pathToScript)
     {
-        var _enemyData = Resources.Load<EnemyData>("_ScriptableObjects/Beetle 1");
-        beetle0 = _enemyData.enemyPrefab;
-        beetle0.GetComponent<Enemy>().scoreValue = _enemyData.scoreValue;
-        beetle0.GetComponent<Enemy>().hitPoints = _enemyData.hitPoints;
-        beetle0.GetComponent<Enemy>().timeToReachGoal = _enemyData.timeToReachGoal;
-        beetle0.GetComponent<Enemy>().goalPosition = getTargetPositionAsVector2();
+        var _enemyData = Resources.Load<EnemyData>(pathToScript);
+        GameObject beetle = _enemyData.enemyPrefab;
+        beetle.GetComponent<Enemy>().scoreValue = _enemyData.scoreValue;
+        beetle.GetComponent<Enemy>().hitPoints = _enemyData.hitPoints;
+        beetle.GetComponent<Enemy>().timeToReachGoal = _enemyData.timeToReachGoal;
+        beetle.GetComponent<Enemy>().goalPosition = getTargetPositionAsVector2();
+        beetle.GetComponent<Enemy>().firstAppearanceAtScore = _enemyData.firstAppearanceAtScore;
+        beetle.GetComponent<Enemy>().spawnRate = _enemyData.spawnRate;
 
-        yield return new WaitForSeconds(_enemyData.spawnRate);
-        InstantiateEnemyAtRandomPosition(beetle0);
-
-        // LoadScriptableObjectEnemy?
-        StartCoroutine(LoadBeetle0());
+        return beetle;
     }
 
-    private IEnumerator LoadBeetle10()
-    {
-        var _enemyData = Resources.Load<EnemyData>("_ScriptableObjects/Beetle 2");
-        beetle10 = _enemyData.enemyPrefab;
-        beetle10.GetComponent<Enemy>().scoreValue = _enemyData.scoreValue;
-        beetle10.GetComponent<Enemy>().hitPoints = _enemyData.hitPoints;
-        beetle10.GetComponent<Enemy>().timeToReachGoal = _enemyData.timeToReachGoal;
-        beetle10.GetComponent<Enemy>().goalPosition = getTargetPositionAsVector2();
-        InstantiateEnemyAtRandomPosition(beetle10);
-
-        yield return new WaitForSeconds(_enemyData.spawnRate);
-
-        StartCoroutine(LoadBeetle10());
+    private IEnumerator SpawnBeetle(GameObject enemy){
+        yield return new WaitForSeconds(enemy.GetComponent<Enemy>().spawnRate);
+        InstantiateEnemyAtRandomPosition(enemy);
+        StartCoroutine(SpawnBeetle(enemy));
     }
-
-    private IEnumerator LoadBeetle25()
-    {
-        var _enemyData = Resources.Load<EnemyData>("_ScriptableObjects/Beelte 3");
-        beetle25 = _enemyData.enemyPrefab;
-        beetle25.GetComponent<Enemy>().scoreValue = _enemyData.scoreValue;
-        beetle25.GetComponent<Enemy>().hitPoints = _enemyData.hitPoints;
-        beetle25.GetComponent<Enemy>().timeToReachGoal = _enemyData.timeToReachGoal;
-        beetle25.GetComponent<Enemy>().goalPosition = getTargetPositionAsVector2();
-        InstantiateEnemyAtRandomPosition(beetle25);
-
-        yield return new WaitForSeconds(_enemyData.spawnRate);
-
-        StartCoroutine(LoadBeetle25());
-    }
-
-    private IEnumerator LoadBeetle50()
-    {
-        var _enemyData = Resources.Load<EnemyData>("_ScriptableObjects/Beelte 4");
-        beetle50 = _enemyData.enemyPrefab;
-        beetle50.GetComponent<Enemy>().scoreValue = _enemyData.scoreValue;
-        beetle50.GetComponent<Enemy>().hitPoints = _enemyData.hitPoints;
-        beetle50.GetComponent<Enemy>().timeToReachGoal = _enemyData.timeToReachGoal;
-        beetle50.GetComponent<Enemy>().goalPosition = getTargetPositionAsVector2();
-        InstantiateEnemyAtRandomPosition(beetle50);
-
-        yield return new WaitForSeconds(_enemyData.spawnRate);
-
-        StartCoroutine(LoadBeetle50());
-    }
-
-    private IEnumerator LoadBeetle100()
-    {
-        var _enemyData = Resources.Load<EnemyData>("_ScriptableObjects/Beelte 5");
-        beetle100 = _enemyData.enemyPrefab;
-        beetle100.GetComponent<Enemy>().scoreValue = _enemyData.scoreValue;
-        beetle100.GetComponent<Enemy>().hitPoints = _enemyData.hitPoints;
-        beetle100.GetComponent<Enemy>().timeToReachGoal = _enemyData.timeToReachGoal;
-        beetle100.GetComponent<Enemy>().goalPosition = getTargetPositionAsVector2();
-        InstantiateEnemyAtRandomPosition(beetle100);
-
-        yield return new WaitForSeconds(_enemyData.spawnRate);
-
-        StartCoroutine(LoadBeetle100());
-    }
-
-
-
-    #region delete    
-    #endregion
 }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7242076843346341066}
   - component: {fileID: -3364223541840887735}
   - component: {fileID: -870470279861074100}
+  - component: {fileID: 6710416331565210915}
   m_Layer: 0
   m_Name: Beetle_0
   m_TagString: Enemy
@@ -99,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPoints: 1
   scoreValue: 1
-  timeToReachGoal: 0
+  timeToReachGoal: 2
   goalPosition: {x: 0, y: 0}
 --- !u!61 &-3364223541840887735
 BoxCollider2D:
@@ -148,3 +149,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
+--- !u!95 &6710416331565210915
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9004412518054136939}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 607e8f3c566704fae8bf94234cd7f99a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

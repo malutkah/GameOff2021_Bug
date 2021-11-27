@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ecd41373249658a41bdf3d6210a254d5, type: 3}
-  m_Name: Beelte 5
+  m_Name: Beetle 4
   m_EditorClassIdentifier: 
-  hitPoints: 20
-  scoreValue: 20
-  timeToReachGoal: 10
-  spawnRate: 19
-  firstAppearanceAtScore: 100
-  enemyPrefab: {fileID: 9084496524467852356, guid: a75a074734171e143ba586af4be59303, type: 3}
+  hitPoints: 10
+  scoreValue: 10
+  timeToReachGoal: 5
+  spawnRate: 9.5
+  firstAppearanceAtScore: 2
+  enemyPrefab: {fileID: 9084496524467852356, guid: e4022d1961237314ba44949ed18c9d3c, type: 3}
