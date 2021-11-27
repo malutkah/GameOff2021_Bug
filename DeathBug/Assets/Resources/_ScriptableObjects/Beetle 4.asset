@@ -16,5 +16,5 @@ MonoBehaviour:
   scoreValue: 10
   timeToReachGoal: 5
   spawnRate: 9.5
-  firstAppearanceAtScore: 2
+  firstAppearanceAtScore: 50
   enemyPrefab: {fileID: 9084496524467852356, guid: e4022d1961237314ba44949ed18c9d3c, type: 3}
