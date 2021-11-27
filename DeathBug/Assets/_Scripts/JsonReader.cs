@@ -33,7 +33,7 @@ public class JsonReader : MonoBehaviour
         // serialize highscore
         highscore = new Highscore()
         {
-            score = GameManager.instnance.score
+            score = GameManager.instance.score
         };
 
         string highscoreText = JsonUtility.ToJson(highscore);
