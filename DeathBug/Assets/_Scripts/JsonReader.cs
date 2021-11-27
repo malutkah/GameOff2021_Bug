@@ -28,15 +28,4 @@ public class JsonReader : MonoBehaviour
         return highscore;
     }
 
-    public void SaveHighscore(Highscore highscore)
-    {
-        // serialize highscore
-        highscore = new Highscore()
-        {
-            score = GameManager.instance.score
-        };
-
-        string highscoreText = JsonUtility.ToJson(highscore);
-        System.IO.File.WriteAllText(Application.persistentDataPath + "/YourHighscore.json", highscoreText);
-    }
 }
