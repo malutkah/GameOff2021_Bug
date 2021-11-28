@@ -134,8 +134,9 @@ GameObject:
   - component: {fileID: 139090324}
   - component: {fileID: 139090326}
   - component: {fileID: 139090325}
+  - component: {fileID: 139090327}
   m_Layer: 5
-  m_Name: TitleScreenText (2)
+  m_Name: HighScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -257,6 +258,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 139090323}
   m_CullTransparentMesh: 1
+--- !u!114 &139090327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139090323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f8cb91d0acfe4e82a32f4d837f5407a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highScoreText: {fileID: 139090325}
 --- !u!1 &229678388
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,7 +1021,7 @@ GameObject:
   - component: {fileID: 1341047148}
   - component: {fileID: 1341047147}
   m_Layer: 5
-  m_Name: TitleScreenText (1)
+  m_Name: HighScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
