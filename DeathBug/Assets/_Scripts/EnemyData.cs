@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EnemyData", menuName = "EnemyData")]
+[CreateAssetMenu(fileName = "EnemyData", menuName = "Enemy")]
 public class EnemyData : ScriptableObject
 {
     public int hitPoints;
