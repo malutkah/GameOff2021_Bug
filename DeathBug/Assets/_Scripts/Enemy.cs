@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     public Vector2 goalPosition;
     private AudioSource source;
     private Sounds sounds;
-
+    private Animator animator;
 
     private void Awake()
     {
@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
         MoveToGoal();
 
         source = GameObject.Find("AudioManager").GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
     }
 
     public void MoveToGoal()
@@ -42,8 +43,6 @@ public class Enemy : MonoBehaviour
         {
             int random = Random.Range(1, 4);
 
-            Destroy(gameObject);
-
             switch (random)
             {
                 case 1:
@@ -59,6 +58,10 @@ public class Enemy : MonoBehaviour
 
             GameManager.instance.score += scoreValue;
             GameManager.instance.gameUI.UpdateScore(GameManager.instance.score);
+
+            animator.SetTrigger("dead");
+            WaitOneSecond();
+            Destroy(gameObject);
         }
     }
 
@@ -69,5 +72,10 @@ public class Enemy : MonoBehaviour
             Target.instance.TakeDamage(hitPoints);
             Destroy(gameObject);
         }
+    }
+
+    private IEnumerator WaitOneSecond()
+    {
+        yield return new WaitForSeconds(1);
     }
 }
