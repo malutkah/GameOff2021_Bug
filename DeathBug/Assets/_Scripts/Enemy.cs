@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     private AudioSource source;
     private Sounds sounds;
     private Animator animator;
+    private bool dead = false;
 
     private void Awake()
     {
@@ -24,6 +25,16 @@ public class Enemy : MonoBehaviour
 
         source = GameObject.Find("AudioManager").GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
+    }
+
+    public bool isDead()
+    {
+        return dead;
+    }
+
+    public void setDead(bool isDead)
+    {
+        dead = isDead;
     }
 
     public void MoveToGoal()
@@ -60,8 +71,9 @@ public class Enemy : MonoBehaviour
             GameManager.instance.gameUI.UpdateScore(GameManager.instance.score);
 
             animator.SetTrigger("dead");
-            WaitOneSecond();
-            Destroy(gameObject);
+            dead = true;
+            transform.DOMove(transform.position, 1).SetEase(Ease.Linear); // Stop Movement
+            StartCoroutine(KillEnemyAfterOneSecond());
         }
     }
 
@@ -69,13 +81,17 @@ public class Enemy : MonoBehaviour
     {
         if (collision.tag == "Goal")
         {
-            Target.instance.TakeDamage(hitPoints);
+            if (!dead)
+            {
+                Target.instance.TakeDamage(hitPoints);
+            }
             Destroy(gameObject);
         }
     }
 
-    private IEnumerator WaitOneSecond()
+    private IEnumerator KillEnemyAfterOneSecond()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.75f);
+        Destroy(gameObject);
     }
 }

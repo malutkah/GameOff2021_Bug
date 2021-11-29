@@ -649,7 +649,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &333503754
 RectTransform:
   m_ObjectHideFlags: 0
@@ -689,7 +689,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 9231160c2a2792f4985a5f5d4388f4a6, type: 3}
+  m_Texture: {fileID: 2800000, guid: b768132b3bdac428488728cee171917e, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -2387,7 +2387,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1302693531
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2427,7 +2427,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: b29f1841477764a48a98002e48b2180d, type: 3}
+  m_Texture: {fileID: 2800000, guid: 78867e1d0ce664a5a82a781447a3c51f, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -2787,6 +2787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc0514a1c7c9c64f9b2aa9f055ade2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameIsPaused: 0
   scoreText: {fileID: 1063420875}
   highScoreText: {fileID: 212862054}
   text: {fileID: 490799811}
