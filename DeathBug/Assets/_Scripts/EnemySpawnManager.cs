@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnManager : MonoBehaviour
+public class EnemySpawnManager : MonoBehaviour
 {
     [HideInInspector] public EnemyData enemyData;
     private GameObject newEnemyGO;
@@ -69,7 +69,7 @@ public class SpawnManager : MonoBehaviour
     #region Enemy Spawning
     public void InstantiateEnemyAtRandomPosition(GameObject enemyToSpawn)
     {
-        int random = Random.Range(0, 3);
+        int random = Random.Range(0, 4);
 
         switch (random)
         {
