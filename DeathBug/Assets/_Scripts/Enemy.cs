@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (GameManager.instance.gameState == GameState.Playing)
+        if (GameManager.instance.gameState == GameState.Playing && !GameManager.instance.gameUI.GameIsPaused)
         {
             int random = Random.Range(1, 4);
 
