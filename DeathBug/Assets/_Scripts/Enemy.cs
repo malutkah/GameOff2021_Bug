@@ -11,6 +11,9 @@ public class Enemy : MonoBehaviour
     public float timeToReachGoal;
     public float spawnRate;
     public Vector2 goalPosition;
+    private AudioSource source;
+    private Sounds sounds;
+
 
     private void Awake()
     {
@@ -18,6 +21,8 @@ public class Enemy : MonoBehaviour
         Time.timeScale = 1f;
 
         MoveToGoal();
+
+        source = GameObject.Find("AudioManager").GetComponent<AudioSource>();
     }
 
     public void MoveToGoal()
@@ -35,7 +40,22 @@ public class Enemy : MonoBehaviour
     {
         if (GameManager.instance.gameState == GameState.Playing)
         {
+            int random = Random.Range(1, 4);
+
             Destroy(gameObject);
+
+            switch (random)
+            {
+                case 1:
+                    FindObjectOfType<AudioManager>().PlaySound("Kill 1");
+                    break;
+                case 2:
+                    FindObjectOfType<AudioManager>().PlaySound("Kill 2");
+                    break;
+                case 3:
+                    FindObjectOfType<AudioManager>().PlaySound("Kill 3");
+                    break;
+            }
 
             GameManager.instance.score += scoreValue;
             GameManager.instance.gameUI.UpdateScore(GameManager.instance.score);

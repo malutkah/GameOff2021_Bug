@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
 
     #region Sound
 
-        IEnumerator PlayBgSounds()
+    IEnumerator PlayBgSounds()
     {
         FindObjectOfType<AudioManager>().PlaySound("Test");
 

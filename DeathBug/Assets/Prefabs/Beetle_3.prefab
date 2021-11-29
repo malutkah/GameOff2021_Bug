@@ -100,7 +100,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPoints: 3
   scoreValue: 3
+  firstAppearanceAtScore: 0
   timeToReachGoal: 4
+  spawnRate: 0
   goalPosition: {x: 0, y: 0}
 --- !u!61 &6029023078725359718
 BoxCollider2D:
@@ -115,7 +117,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.24}
+  m_Offset: {x: -0.01271975, y: -0.24635983}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -126,7 +128,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.3, y: 4}
+  m_Size: {x: 4.478076, y: 5.920676}
   m_EdgeRadius: 0
 --- !u!50 &8146998442263535459
 Rigidbody2D:
