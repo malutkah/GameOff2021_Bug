@@ -50,30 +50,36 @@ public class Enemy : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (GameManager.instance.gameState == GameState.Playing && !GameManager.instance.gameUI.GameIsPaused)
+        if (GameManager.instance.gameState == GameState.Playing && !GameManager.instance.gameUI.GameIsPaused && !dead)
         {
-            int random = Random.Range(1, 4);
+            dead = true;
 
-            switch (random)
-            {
-                case 1:
-                    FindObjectOfType<AudioManager>().PlaySound("Kill 1");
-                    break;
-                case 2:
-                    FindObjectOfType<AudioManager>().PlaySound("Kill 2");
-                    break;
-                case 3:
-                    FindObjectOfType<AudioManager>().PlaySound("Kill 3");
-                    break;
-            }
-
+            PlayKillSound();
+            
             GameManager.instance.score += scoreValue;
             GameManager.instance.gameUI.UpdateScore(GameManager.instance.score);
 
             animator.SetTrigger("dead");
-            dead = true;
             transform.DOMove(transform.position, 1).SetEase(Ease.Linear); // Stop Movement
             StartCoroutine(KillEnemyAfterOneSecond());
+        }
+    }
+
+    private void PlayKillSound()
+    {
+        int random = Random.Range(1, 4);
+
+        switch (random)
+        {
+            case 1:
+                FindObjectOfType<AudioManager>().PlaySound("Kill 1");
+                break;
+            case 2:
+                FindObjectOfType<AudioManager>().PlaySound("Kill 2");
+                break;
+            case 3:
+                FindObjectOfType<AudioManager>().PlaySound("Kill 3");
+                break;
         }
     }
 

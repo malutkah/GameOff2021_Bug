@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class SoundToggleOnOff : MonoBehaviour
@@ -7,28 +6,34 @@ public class SoundToggleOnOff : MonoBehaviour
     public AudioManager audioManager;
     private AudioSource source;
     public GameObject SoundOn, SoundOff;
+    private Sounds[] sounds;
 
     private void Awake()
     {
-        source = audioManager.GetComponent<AudioSource>();
+        sounds = audioManager.sounds;
     }
 
     private void OnMouseDown()
     {
         bool soundOn = SoundOn.activeSelf;
         if (soundOn) {
-            audioManager.StopSound("Test");
+            SetVolume(0f);
             SoundOn.SetActive(false);
             SoundOff.SetActive(true);
-            Debug.Log($"soundOn= {soundOn}");
         }
         else
         {
-            audioManager.PlaySound("Test");
+            SetVolume(0.25f);
             SoundOn.SetActive(true);
             SoundOff.SetActive(false);
-            Debug.Log($"soundOn= {soundOn}");
         }
-        
+    }
+
+    private void SetVolume(float volume)
+    {
+        foreach (Sounds s in sounds)
+        {
+            s.source.volume = volume;
+        }
     }
 }
