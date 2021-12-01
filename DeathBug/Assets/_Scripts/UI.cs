@@ -12,6 +12,7 @@ public class UI : MonoBehaviour
     public TextMeshProUGUI scoreText, highScoreText, text;
     public TextMeshProUGUI cooldownText;
     public GameObject pauseMenuUI;
+    public GameObject resumeButton;
 
     private void Update()
     {
@@ -35,7 +36,7 @@ public class UI : MonoBehaviour
 
         GameIsPaused = false;
     }
-   
+
     public void QuitGame()
     {
         Application.Quit();
@@ -80,7 +81,19 @@ public class UI : MonoBehaviour
         {
             Destroy(enemy);
         }
-        
+
+        // get the text object from resumeButton
+        TextMeshProUGUI resumeButtonText = resumeButton.GetComponentInChildren<TextMeshProUGUI>();
+
+        // change the onclick function from resumeButtone to RestartGame
+        resumeButtonText.text = "To Main Menu";
+        resumeButton.GetComponent<Button>().onClick.RemoveAllListeners();
+        resumeButton.GetComponent<Button>().onClick.AddListener(() => ToMainMenu());
+    }
+
+    public void ToMainMenu()
+    {
+        SceneManager.LoadScene("Main");
     }
 
     public void RestartGame()

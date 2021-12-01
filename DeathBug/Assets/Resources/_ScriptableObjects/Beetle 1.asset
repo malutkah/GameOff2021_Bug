@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPoints: 1
   scoreValue: 1
-  timeToReachGoal: 2.3
-  spawnRate: 0.95
+  timeToReachGoal: 2.35
+  spawnRate: 1.15
   firstAppearanceAtScore: 0
   enemyPrefab: {fileID: 9004412518054136939, guid: ce0634abbc5b88d4a9ca9724a8c687d5, type: 3}

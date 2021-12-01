@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -159.85, y: -168.1}
+  m_AnchoredPosition: {x: -159.85, y: -168.09998}
   m_SizeDelta: {x: 53.26, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &212862054
@@ -692,7 +692,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: b768132b3bdac428488728cee171917e, type: 3}
+  m_Texture: {fileID: 2800000, guid: c5f87246353294448931a181ab94c086, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1054,7 +1054,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &480379409
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1147,7 +1147,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -267.5, y: -168.1}
+  m_AnchoredPosition: {x: -267.5, y: -168.09998}
   m_SizeDelta: {x: 162.04, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &490799811
@@ -2495,7 +2495,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 78867e1d0ce664a5a82a781447a3c51f, type: 3}
+  m_Texture: {fileID: 2800000, guid: 8cd5f8d61fb08494ca80e71f0c95d3c0, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -2923,6 +2923,7 @@ MonoBehaviour:
   text: {fileID: 490799811}
   cooldownText: {fileID: 582033172}
   pauseMenuUI: {fileID: 986481863}
+  resumeButton: {fileID: 1218017836}
 --- !u!1 &1664598864
 GameObject:
   m_ObjectHideFlags: 0
