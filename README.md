@@ -10,4 +10,4 @@ https://itch.io/jam/game-off-2021/rate/1301282
 
 ---
 
-Unity version: 202.3.22f1
+Unity version: 2020.3.22f1
